@@ -99,7 +99,7 @@ class rateLimitThread (threading.Thread):
     threading.Thread.__init__(self)
 
   def waitForReset(self, waitTime):
-    time.sleep(waitTime)
+    time.sleep(max(0, waitTime))
     if (time.time() < self.bitvavo.rateLimitReset):
       self.bitvavo.rateLimitRemaining = 1000
       debugToConsole('Ban should have been lifted, resetting rate limit to 1000.')
